@@ -6,12 +6,16 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 21:28:35 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/07 04:22:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/07 04:45:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <complex.h>
-#include "mlx.h"
+#ifdef __linux__
+# include <mlx.h>
+#elif __APPLE__
+# include "mlx.h"
+#endif
 #define WIN_WIDTH 800
 #define WIN_HEIGHT 600
 
