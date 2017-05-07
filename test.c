@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 21:28:35 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/07 04:02:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/07 04:22:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,21 @@ void	draw_fractal_pixel(int i, int j, void *mlx, void *window)
 	int		color;
 
 	iteration = 0;
-	x = (double)i * 4.0 / WIN_WIDTH - 2;
-	y = (double)j * 2 / WIN_HEIGHT - 1;
+	x = (double)i * 4.0 / (double)WIN_WIDTH - 2.0;
+	y = (double)j * 4.0 / (double)WIN_HEIGHT - 2.0;
 	z = 0;
 	c = 0;
-	while (z * z + c * c < 2 * 2 && iteration < 500)
+	while (z * z + c * c < 2 * 2 && iteration < 1000)
 	{
 		double tmp = z * z - c * c + x;
 		c = 2 * z * c + y;
 		z = tmp;
 		iteration++;
 	}
-	color = iteration << 5;
+	if (iteration > 250)
+		color = iteration << 7;
+	else
+		color = iteration << 5;
 	mlx_pixel_put(mlx, window, i, j, color);
 }
 
@@ -46,10 +49,10 @@ void	draw_fractal(void *mlx, void *window)
 	int		j;
 
 	i = 0;
-	while (i < WIN_HEIGHT)
+	while (i < WIN_WIDTH)
 	{
 		j = 0;
-		while (j < WIN_WIDTH)
+		while (j < WIN_HEIGHT)
 		{
 			draw_fractal_pixel(i, j, mlx, window);
 			j++;
