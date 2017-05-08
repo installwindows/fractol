@@ -6,16 +6,20 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/06 17:39:37 by varnaud           #+#    #+#              #
-#    Updated: 2017/05/06 17:47:54 by varnaud          ###   ########.fr        #
+#    Updated: 2017/05/07 23:16:43 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 SRC = main.c \
-	  setup_fractol.c
+	  setup_fractol.c \
+	  hook.c \
+	  key.c \
+	  draw.c \
+	  fractals.c
 OBJ = $(SRC:.c=.o)
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra -Ilibft -Imlx
+CFLAGS = -g -Wall -Werror -Wextra -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Tk.framework/Versions/8.4/Headers -Ilibft -Imlx 
 .PHONY: all clean fclean re
 
 all: $(NAME)
@@ -23,9 +27,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C libft
 	make -C mlx
-	$(CC) $(CFLAGS) $(OBJ) -Llibft -Lmlx -lmlx -lft -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -Llibft -Lmlx -lmlx -lft -framework OpenGL -framework AppKit -o $(NAME) 
 
-$(OBJ): fractol.h
+$(OBJ): fractol.h keys.h
 
 clean:
 	make -C libft clean
