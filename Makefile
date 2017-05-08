@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/06 17:39:37 by varnaud           #+#    #+#              #
-#    Updated: 2017/05/07 23:16:43 by varnaud          ###   ########.fr        #
+#    Updated: 2017/05/08 02:40:20 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,10 @@ $(NAME): $(OBJ)
 	make -C libft
 	make -C mlx
 	$(CC) $(CFLAGS) $(OBJ) -Llibft -Lmlx -lmlx -lft -framework OpenGL -framework AppKit -o $(NAME) 
+
+linux: $(OBJ)
+	make -C libft 
+	gcc $(OBJ) -Llibft -lft -lmlx -lXext -lX11 -lm -o $(NAME)
 
 $(OBJ): fractol.h keys.h
 
