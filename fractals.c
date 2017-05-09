@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 22:08:14 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/08 00:01:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/08 23:49:12 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		get_color(int c)
 {
+	/*
 	const int colors[] = {0xF0F8FF, 0xFAEBD7, 0x00FFFF, 0x7FFFD4, 0xF0FFFF,
 		0xF5F5DC, 0xFFE4C4, 0xFFEBCD, 0x0000FF, 0x8A2BE2, 0xA52A2A, 0xDEB887,
 		0x5F9EA0, 0x7FFF00, 0xD2691E, 0xFF7F50, 0x6495ED, 0xFFF8DC, 0xDC143C,
@@ -36,14 +37,25 @@ int		get_color(int c)
 		0x006400, 0x008000, 0x008080, 0x008B8B, 0x00BFFF, 0x00CED1, 0x00FA9A,
 		0x00FF00, 0x00FF7F, 0x00FFFF, 0x00FFFF, 0x191970, 0x1E90FF, 0x20B2AA,
 		0x228B22, 0x2E8B57, 0x2F4F4F, 0x2F4F4F, 0x32CD32, 0x3CB371, 0x40E0D0};
-
-	return (colors[c % sizeof(colors)]);
+*/
+	const int	colors[] = {0x2C3539, 0x2B1B17, 0x34282C, 0x25383C, 0x3B3131, 0x413839, 0x3D3C3A, 0x463E3F, 0x4C4646, 0x504A4B, 0x565051, 0x5C5858, 0x625D5D, 0x666362, 0x6D6968, 0x726E6D, 0x736F6E, 0x837E7C, 0x848482, 0xB6B6B4, 0xD1D0CE, 0xE5E4E2, 0xBCC6CC, 0x98AFC7};
+	return (colors[c % (sizeof(colors) / sizeof(int))]);
 }
 
-int		mandelbrot(double complex c, double complex z, int iter,
-		const int max_iter)
+int		mandelbrot(double complex c, const int max_iter)
 {
-	if (creal(z) > 2 || cimag(z) > 2 || iter >= max_iter)
-		return (iter);
-	return (mandelbrot(c, cpow(z, 2) + c, ++iter, max_iter));
+	int		i;
+	double complex	z;
+	
+	z = 0;
+	i = 0;
+	while (i < max_iter)
+	{
+		if (cimag(z) * cimag(z) + creal(z) * creal(z) >= 4)
+			break ;
+		else
+			z = cpow(z, 2) + c;
+		i++;
+	}
+	return (i);
 }

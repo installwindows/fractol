@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 16:46:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/07 23:38:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/08 23:22:15 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ typedef struct			s_window
 	int					height;
 }						t_window;
 
+typedef struct			s_img
+{
+	int					wth;
+	int					hgt;
+	void				*img;
+	int					bpp;
+	int					sl;
+	int					edn;
+	char				*dta;
+}						t_img;
+
 typedef struct			s_fractol
 {
 	int					type;
@@ -49,6 +60,8 @@ typedef struct			s_fractol
 	int					max_iter;
 	t_window			*w;
 	int					keys[MAX_KEYS];
+	t_img				*img;
+	t_img				imgbuf[50];
 	struct s_fractol	*next;
 }						t_fractol;
 
@@ -78,7 +91,6 @@ void					draw_fractol(t_fractol *fractol);
 */
 
 int						get_color(int c);
-int						mandelbrot(double complex c, double complex z, int iter,
-						const int max_iter);
+int						mandelbrot(double complex c, const int max_iter);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 20:00:12 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/07 23:37:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/08 23:23:35 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		draw_fractol(t_fractol *f)
 {
 	int		i;
 	int		j;
+	int		color;
 	double complex	c;
 
 	i = 0;
@@ -54,8 +55,9 @@ void		draw_fractol(t_fractol *f)
 				+
 				(((double)j * 4.0 / (double)WIN_HEIGHT - 2.0) / f->zoom + f->t_y)
 				* I;
+			color = mandelbrot(c, f->max_iter);
 			mlx_pixel_put(f->w->mlx, f->w->window, i, j,
-			get_color(mandelbrot(c, 0, 0, f->max_iter)));
+			color == f->max_iter ? 0 : get_color(color));
 			j++;
 		}
 		i++;

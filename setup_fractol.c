@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 17:27:04 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/07 23:48:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/08 17:12:27 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ void			setup_hook(t_fractol *list)
 	mlx_loop_hook(list->w->mlx, loop_hook, list);
 }
 
+t_img			*setup_image(t_fractol *f)
+{
+	t_img	*i;
+
+	i = malloc(sizeof(t_img));
+	i->wth = WIN_WIDTH;
+	i->hgt = WIN_HEIGHT;
+	i->img = mlx_new_image(f->w->mlx, WIN_WIDTH, WIN_HEIGHT);
+	i->dta = mlx_get_data_addr(i->img, &i->bpp, &i->sl, &i->edn);
+	return (i);
+}
+
 t_fractol		*setup_fractol(void *mlx, char **av)
 {
 	t_fractol	*list;
@@ -58,6 +70,7 @@ t_fractol		*setup_fractol(void *mlx, char **av)
 		(*cur)->type = ft_atoi(*av);
 		(*cur)->w = setup_window(mlx, (*cur)->type);
 		(*cur)->next = NULL;
+		(*cur)->img = setup_image(*cur);
 		cur = &(*cur)->next;
 	}
 	return (list);
