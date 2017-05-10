@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 22:08:14 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/08 23:49:12 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/10 03:32:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,26 @@ int		get_color(int c)
 	return (colors[c % (sizeof(colors) / sizeof(int))]);
 }
 
-int		mandelbrot(double complex c, const int max_iter)
+int		mandelbrot(double complex z, double complex c, const int max_iter)
 {
 	int		i;
-	double complex	z;
 	
-	z = 0;
+	i = 0;
+	while (i < max_iter)
+	{
+		if (cimag(z) * cimag(z) + creal(z) * creal(z) >= 4)
+			break ;
+		else
+			z = cpow(z, 2) + c;
+		i++;
+	}
+	return (i);
+}
+
+int		julia(double complex z, double complex c, const int max_iter)
+{
+	int		i;
+
 	i = 0;
 	while (i < max_iter)
 	{

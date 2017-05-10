@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 16:46:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/09 16:30:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/10 03:31:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int						exit_window_hook(t_fractol *list);
 void					check_keys(t_fractol *fractol);
 void					draw_fractol(t_fractol *fractol);
 void					draw_image(t_fractol *f,
-						int (*fractal)(double complex, int));
+						int (*fractal)(double complex, double complex, int));
 
 /*
 ** Fractals
 */
 
 int						get_color(int c);
-int						mandelbrot(double complex c, const int max_iter);
+int						mandelbrot(double complex z, double complex c, const int max_iter);
 
 #endif

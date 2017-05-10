@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 20:00:12 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/09 17:24:50 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/10 03:35:27 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	put_pixel_to_image(t_img *img, int x, int y, int c)
 	return (0);
 }
 
-void		draw_image(t_fractol *f, int (*fractal)(double complex, int))
+void		draw_image(t_fractol *f, int (*fractal)(double complex, double complex, int))
 {
 	int				i;
 	int				j;
@@ -89,7 +89,7 @@ void		draw_image(t_fractol *f, int (*fractal)(double complex, int))
 			c = (((double)i * 4.0 / (double)WIN_WIDTH - 2.0) /
 				f->zoom + f->t_x) + (((double)j * 4.0 /
 				(double)WIN_HEIGHT - 2.0) / f->zoom + f->t_y) * I;
-			color = fractal(c, f->max_iter);
+			color = fractal((200.0 * 4.0 / WIN_WIDTH - 2) + (600.0 * 4.0 / WIN_HEIGHT - 2) * I, c, f->max_iter);
 			put_pixel_to_image(f->img, i, j, color == f->max_iter ? 0 :
 								get_color(color));
 			j++;
