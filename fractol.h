@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 16:46:05 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/08 23:22:15 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/09 16:30:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct			s_fractol
 	int					keys[MAX_KEYS];
 	t_img				*img;
 	t_img				imgbuf[50];
+	int					redraw;
 	struct s_fractol	*next;
 }						t_fractol;
 
@@ -85,6 +86,8 @@ int						exit_window_hook(t_fractol *list);
 
 void					check_keys(t_fractol *fractol);
 void					draw_fractol(t_fractol *fractol);
+void					draw_image(t_fractol *f,
+						int (*fractal)(double complex, int));
 
 /*
 ** Fractals

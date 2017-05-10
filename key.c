@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 18:26:06 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/07 21:42:47 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/09 16:34:47 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	check_keys(t_fractol *fractol)
 	{
 		fractol->t_y = ty;
 		fractol->t_x = tx;
-		draw_fractol(fractol);
+		fractol->redraw = 1;
+		//draw_fractol(fractol);
 	}
 }

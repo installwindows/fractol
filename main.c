@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 16:44:33 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/07 23:46:49 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/09 16:33:14 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		main(int argc, char **argv)
 	setup_hook(list);
 	while (list)
 	{
-		draw_fractol(list);
+		draw_image(list, mandelbrot);
 		list = list->next;
 	}
 	mlx_loop(mlx);
