@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/06 17:27:04 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/08 17:12:27 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/09 19:24:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_fractol		*setup_fractol(void *mlx, char **av)
 		*cur = malloc(sizeof(t_fractol));
 		ft_memset(*cur, 0, sizeof(t_fractol));
 		(*cur)->zoom = 1;
-		(*cur)->max_iter = 50;
+		(*cur)->max_iter = 20;
 		(*cur)->type = ft_atoi(*av);
 		(*cur)->w = setup_window(mlx, (*cur)->type);
 		(*cur)->next = NULL;

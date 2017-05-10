@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 17:56:32 by varnaud           #+#    #+#             */
-/*   Updated: 2017/05/09 16:32:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2017/05/09 19:39:51 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 int		mouse_hook(int button, int x, int y, t_fractol *fractol)
 {
+	static int	z;
+
 	if (button == SCROLL_UP)
 	{
 		fractol->zoom *= 1.05;
-		fractol->max_iter *= 1.05;
+		z++;
+		if (z % 40 == 0)
+			fractol->max_iter *= 1.1;
 		fractol->x = x;
 		fractol->y = y;
 		fractol->redraw = 1;
@@ -26,9 +30,13 @@ int		mouse_hook(int button, int x, int y, t_fractol *fractol)
 	if (button == SCROLL_DOWN)
 	{
 		fractol->zoom /= 1.05;
-		fractol->max_iter /= 1.05;
-		if (fractol->max_iter < 50)
-			fractol->max_iter = 50;
+		z--;
+		if (z % 40 == 0)
+			fractol->max_iter /= 1.1;
+		if (z < 0)
+			z = 0;
+		if (fractol->max_iter < 20)
+			fractol->max_iter = 20;
 		if (fractol->zoom < 1)
 			fractol->zoom = 1;
 		fractol->x = x;
